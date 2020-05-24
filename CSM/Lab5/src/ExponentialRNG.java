@@ -11,6 +11,6 @@ public class ExponentialRNG {
     }
 
     public double next() {
-        return (-1/this.lambda) * Math.log(rng.nextDouble());
+        return (-1 / this.lambda) * Math.log(rng.nextDouble());
     }
 }
