@@ -33,7 +33,7 @@ int main(int argc, char* argv[]) {
 
   	if (rank == 0){
   		// calculation of local ranges for each process
-  		first = 1;
+  		first = 0;
   		last = amountPerProcess;
 
   		int firstI, lastI;
