@@ -1,5 +1,19 @@
+# general
 *.DS_Store
+**/.DS_Store
+
+
+# idea
 *.iws
-*/out/
-*.idea/**/workspace.xml
-*.idea/**/tasks.xml
+*/out/*
+*.class
+**/.idea/*
+
+# CMake
+*CMakeCache.txt
+*CMakeFiles
+*Makefile
+*cmake_install.cmake
+
+# ipython notebooks
+**/*.ipynb_checkpoints/*
