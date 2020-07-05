@@ -13,6 +13,6 @@ include_directories(../common)
 link_directories(../common/SHA256)
 
 set(SOURCE_EXE main.cpp ../common/checker.cpp)
-add_executable(openMPI ${SOURCE_EXE})
+add_executable(mpi ${SOURCE_EXE})
 
-target_link_libraries(openMPI SHA256 ${MPI_LIBRARIES})
+target_link_libraries(mpi SHA256 ${MPI_LIBRARIES})
