@@ -22,6 +22,7 @@ public class NetworkStatistics {
 
     public static void updateStates(){
         double time = Timeline.getTime();
+        if (time > maxTime) time = maxTime;
         for (QueueingSystem qs : NetworkManager.queueingSystems){
             states.get(qs.getId()).add(new StateEntry(time, qs.getQueueLength(), qs.getNumChannelsInUse()));
         }
@@ -39,10 +40,13 @@ public class NetworkStatistics {
             System.out.println("For the system " + qs.getId() + ": ");
 
             double prevTime = 0, queueLengthAcc = 0, channelsInUseAcc = 0;
+            int prevQueueLength = 0, prevChannelsInUse = 0;
 
             for (StateEntry entry : states.get(qs.getId())){
-                queueLengthAcc += (entry.timestamp - prevTime) * entry.queueLength;
-                channelsInUseAcc += (entry.timestamp - prevTime) * entry.channelsInUse;
+                queueLengthAcc += (entry.timestamp - prevTime) * prevQueueLength;
+                prevQueueLength = entry.queueLength;
+                channelsInUseAcc += (entry.timestamp - prevTime) * prevChannelsInUse;
+                prevChannelsInUse = entry.channelsInUse;
                 prevTime = entry.timestamp;
             }
             System.out.format("Average queue length L = %.2f\n", queueLengthAcc/maxTime);

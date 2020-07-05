@@ -40,7 +40,7 @@ public class NetworkManager {
             NetworkStatistics.updateStates();
             nextEvent = Timeline.next();
         }
-
+        NetworkStatistics.updateStates();
         NetworkStatistics.printReport();
     }
 }
