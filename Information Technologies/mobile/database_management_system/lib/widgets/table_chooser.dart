@@ -69,6 +69,6 @@ class _TableChooserState extends State<TableChooser> {
       _fetchData();
     }
 
-    return isLoading ? CircularProgressIndicator() : Column(children: getItems(),);
+    return isLoading ? CircularProgressIndicator() : Center(child: Column(children: getItems(),));
   }
 }

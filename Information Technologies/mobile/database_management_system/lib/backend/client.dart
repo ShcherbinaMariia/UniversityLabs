@@ -34,7 +34,11 @@ class Client {
 
   Future<http.Response> getFilteredRows(String database, String table, List<AttributeFilter> filters) async {
     List<String> params = List();
-    filters.forEach((element) {params.add(element.toParamString());});
+    filters.forEach((element) {
+      String elementString = element.toParamString();
+      if (elementString != "")
+        params.add(elementString);
+    });
     return http.get(sprintf(FILTER_ROWS_URL_F, [database, table, params.join("&")]));
   }
 }
