@@ -36,6 +36,7 @@ class _TableChooserState extends State<TableChooser> {
       onChanged: (newValue) => {
         setState(() {
           _selectedTable = newValue;
+          _fetchData();
         })
       },
       items: items,
@@ -47,7 +48,6 @@ class _TableChooserState extends State<TableChooser> {
       isLoading = true;
     });
 
-    this._selectedTable = null;
     this._tables = await widget._backend.getAvailableTables(widget._database());
     this._database = widget._database();
 
@@ -64,11 +64,19 @@ class _TableChooserState extends State<TableChooser> {
   }
 
   @override
+  void initState() {
+    this._selectedTable = null;
+    _fetchData();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     if (this._database != widget._database()) {
+      this._selectedTable = null;
       _fetchData();
     }
 
-    return isLoading ? CircularProgressIndicator() : Center(child: Column(children: getItems(),));
+    return Center(child: isLoading ? CircularProgressIndicator() : Column(children: getItems(),));
   }
 }
