@@ -1,0 +1,27 @@
+version: '3.2'
+services:
+  rest:
+    build: ../
+    ports:
+      - 81:4567
+    depends_on:
+      - mongo
+      - mysql
+    environment:
+      - MODE=WEB
+
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - 27017:27017
+      - 28017:28017
+    volumes:
+      - ./db:/var/lib/mongodb
+
+  mysql:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
