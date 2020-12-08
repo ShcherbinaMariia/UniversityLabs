@@ -1,0 +1,1 @@
+The maximum likelihood value is 0.0 using A=-100000.0 and B=-200000.0
